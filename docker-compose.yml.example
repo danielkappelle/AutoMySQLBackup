@@ -1,0 +1,16 @@
+version: "2"
+services:
+  backup:
+    container_name: backup
+    image: img
+    volumes:
+      - /path/on/host/:/var/backup/db
+      - /path/to/.s3cfg:/root/.s3cfg
+      - "/path/to/vars.env:/root/vars.env"
+    networks:
+      - backend
+
+networks:
+  backend:
+    external:
+      name: NETWORK_OF_MYSQL

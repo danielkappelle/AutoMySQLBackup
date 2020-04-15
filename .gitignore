@@ -1,1 +1,3 @@
 .DS_Store
+vars.env
+docker-compose.yml

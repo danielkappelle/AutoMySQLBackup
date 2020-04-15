@@ -115,18 +115,10 @@ load_default_config() {
 mysql_commands() {
   VERSION=`mysql -V | grep -oE "[0-9]+\.[0-9]+\.[0-9]+"`
   NODOT_VER=`echo $VERSION | sed -${sed_Regex} 's/\.//g'`
-  if [ "${CONFIG_mysql_dump_encrypted_login}" = "yes" ]; then
-    export MYSQLDUMP="mysqldump --login-path=$CONFIG_mysql_dump_login_path"
-    export MYSQLSHOW="mysqlshow --login-path=$CONFIG_mysql_dump_login_path"
-    export MYSQL="mysql --login-path=$CONFIG_mysql_dump_login_path"
-    if [ -n "${CONFIG_mysql_dump_login_path_file}" ]; then
-      export MYSQL_TEST_LOGIN_FILE=$CONFIG_mysql_dump_login_path_file
-    fi
-  else
-    export MYSQLDUMP="mysqldump --user=${CONFIG_mysql_dump_username} --password=${CONFIG_mysql_dump_password} --host=${CONFIG_mysql_dump_host}";
-    export MYSQLSHOW="mysqlshow --user=${CONFIG_mysql_dump_username} --password=${CONFIG_mysql_dump_password} --host=${CONFIG_mysql_dump_host}";
-    export MYSQL="mysql --user=${CONFIG_mysql_dump_username} --password=${CONFIG_mysql_dump_password} --host=${CONFIG_mysql_dump_host}";
-  fi
+
+	export MYSQLDUMP="mysqldump --user=${MYSQL_USER} --host=${MYSQL_HOST}";
+	export MYSQLSHOW="mysqlshow --user=${MYSQL_USER} --host=${MYSQL_HOST}";
+	export MYSQL="mysql --user=${MYSQL_USER} --host=${MYSQL_HOST}";
 }
 
 # @return:	true, if variable is set; else false
