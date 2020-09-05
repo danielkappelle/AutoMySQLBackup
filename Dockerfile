@@ -18,4 +18,4 @@ WORKDIR /app
 RUN ./install.sh
 RUN mkdir -p /var/backup/db
 
-CMD tail -f /dev/null
+CMD cron && tail -f /dev/null

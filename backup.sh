@@ -24,6 +24,11 @@ curl -X POST \
   -d "{\"chat_id\": \"${TELEGRAM_CHAT_ID}\", \"text\": \"${MESSAGE}\"}" \
   https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage > /dev/null
 
+if [ $EXIT_CODE -ne 0 ];
+then
+  exit 1
+fi
+
 s3cmd sync -r --delete-removed /var/backup/db s3://mysql-backup
 
 # Send status to telegram
