@@ -5,12 +5,11 @@ source /root/vars.env
 # Perform rotated backup
 /usr/local/bin/automysqlbackup /etc/automysqlbackup/myserver.conf
 
-CHECK=$(printf '\U2705')
-CROSS=$(printf '\U274c')
-
-
 # Send status to telegram
 EXIT_CODE=$?
+
+CHECK=$(printf '\U2705')
+CROSS=$(printf '\U274c')
 
 if [ $EXIT_CODE -eq 0 ];
 then
